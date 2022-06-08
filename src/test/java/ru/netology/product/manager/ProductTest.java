@@ -29,7 +29,7 @@ public class ProductTest {
     }
 
     @Test
-    void shouldManagerSearchBy() {
+    void shouldManagerSearchByBookName() {
         Book book1 = new Book(1, "War and Peace", "Lev Tolstoy");
         Book book2 = new Book(2, "Oblomov", "Ivan Goncharov");
         Book book3 = new Book(3, "Fathers and Sons", "Ivan Turgenev");
@@ -44,8 +44,91 @@ public class ProductTest {
         manager.add(smartphone3);
 
         Product[] actual = manager.searchBy("and");
-        ;
         Product[] expected = {book1, book3};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldManagerSearchByBookAuthor() {
+        Book book1 = new Book(1, "War and Peace", "Lev Tolstoy");
+        Book book2 = new Book(2, "Oblomov", "Ivan Goncharov");
+        Book book3 = new Book(3, "Fathers and Sons", "Ivan Turgenev");
+        Smartphone smartphone1 = new Smartphone(4, "iPhone1", "China");
+        Smartphone smartphone2 = new Smartphone(5, "LumiaPhone1", "USA");
+        Smartphone smartphone3 = new Smartphone(6, "NexusPhone1", "Vietnam");
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+
+        Product[] actual = manager.searchBy("Ivan");
+        Product[] expected = {book2, book3};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldManagerSearchBySmartphoneName() {
+        Book book1 = new Book(1, "War and Peace", "Lev Tolstoy");
+        Book book2 = new Book(2, "Oblomov", "Ivan Goncharov");
+        Book book3 = new Book(3, "Fathers and Sons", "Ivan Turgenev");
+        Smartphone smartphone1 = new Smartphone(4, "iPhone1", "China");
+        Smartphone smartphone2 = new Smartphone(5, "LumiaPhone1", "USA");
+        Smartphone smartphone3 = new Smartphone(6, "NexusPhone1", "Vietnam");
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+
+        Product[] actual = manager.searchBy("xus");
+        Product[] expected = {smartphone3};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldManagerSearchBySmartphoneManufacturer() {
+        Book book1 = new Book(1, "War and Peace", "Lev Tolstoy");
+        Book book2 = new Book(2, "Oblomov", "Ivan Goncharov");
+        Book book3 = new Book(3, "Fathers and Sons", "Ivan Turgenev");
+        Smartphone smartphone1 = new Smartphone(4, "iPhone1", "China");
+        Smartphone smartphone2 = new Smartphone(5, "LumiaPhone1", "China");
+        Smartphone smartphone3 = new Smartphone(6, "NexusPhone1", "China");
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+
+        Product[] actual = manager.searchBy("China");
+        Product[] expected = {smartphone1, smartphone2, smartphone3};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldManagerSearchByNotFound() {
+        Book book1 = new Book(1, "War and Peace", "Lev Tolstoy");
+        Book book2 = new Book(2, "Oblomov", "Ivan Goncharov");
+        Book book3 = new Book(3, "Fathers and Sons", "Ivan Turgenev");
+        Smartphone smartphone1 = new Smartphone(4, "iPhone1", "China");
+        Smartphone smartphone2 = new Smartphone(5, "LumiaPhone1", "China");
+        Smartphone smartphone3 = new Smartphone(6, "NexusPhone1", "China");
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+
+        Product[] actual = manager.searchBy("Netology");
+        Product[] expected = {};
 
         Assertions.assertArrayEquals(expected, actual);
     }

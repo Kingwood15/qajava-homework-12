@@ -1,6 +1,6 @@
 package ru.netology.product.manager;
 
-public class Smartphone extends Product{
+public class Smartphone extends Product {
 
     private String manufacturer;
 
@@ -8,5 +8,17 @@ public class Smartphone extends Product{
         super.id = smartphoneId;
         super.name = smartphoneName;
         this.manufacturer = smartphoneManufacturer;
+    }
+
+    @Override
+    public boolean matches(String search) {
+        if (super.matches(search)) { // вызов метода matches в версии описанной в Product
+            return true;
+        }
+        if (this.manufacturer.contains(search)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
